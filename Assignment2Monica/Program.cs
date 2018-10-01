@@ -234,7 +234,7 @@ namespace Assignment_2
             StockNode currNodeOne = this.head;
             StockNode temp = this.head;
             temp = temp.Next;
-            //this.head.StockHolding.Name = "Chingari";
+            //this.head.StockHolding.Name = "Anything";
             //this.Swap(temp.Next.StockHolding);
 
 
@@ -245,9 +245,9 @@ namespace Assignment_2
 
                 Console.WriteLine("Hello" + temp.StockHolding.Name);
                 if (currNodeOne.StockHolding.Name.CompareTo(temp.StockHolding.Name) < 0)
-                { Console.WriteLine("Kuch nahi karna"); }
+                { Console.WriteLine("code to return same"); }
                 else
-                { Console.WriteLine("Swap kardo please"); }
+                { Console.WriteLine("Code to swap"); }
                 temp = temp.Next;
 
             }
@@ -263,23 +263,26 @@ namespace Assignment_2
         {
             // write your implementation here
             StockNode temp = this.head;
-            int StockSize = 0;
+            int StockLen = 0;
             while (temp.Next != null)
-            //Traverse list to find number of stocks in the list
+            
+                //Travering the list to find the total number of stocks as StockLen
             {
-                StockSize++;
+                StockLen++;
                 temp = temp.Next;
             }
-            //Local variable to deal with run-time data
-            decimal[] holdings = new decimal[StockSize];
-            decimal[] currentPrice = new decimal[StockSize];
-            string[] symbol = new string[StockSize];
-            string[] name = new string[StockSize];
+
+            //Creating local variables for run-time data
+
+            decimal[] holdings = new decimal[StockLen];
+            decimal[] currentPrice = new decimal[StockLen];
+            string[] symbol = new string[StockLen];
+            string[] name = new string[StockLen];
             temp = this.head;
             int ctr = 0;
             while (temp.Next != null)
             {
-                //Populating local variables
+                //Populating the incremental local variables
 
                 holdings[ctr] = temp.StockHolding.Holdings;
                 currentPrice[ctr] = temp.StockHolding.CurrentPrice;
@@ -289,29 +292,31 @@ namespace Assignment_2
                 ctr++;
             }
 
+            //Creating comparision logic with nested loops using CompareTo
+            //Bubblesorting is used based on descending holding values of stocks
+
             for (int i = 1; i < name.Length; i++)
             {
                 for (int j = 0; j < name.Length - i; j++)
                 {
                     if (name[j].CompareTo(name[j + 1]) > 0)
                     {
-                        //bubble sort implementation,sorting based on holding values of stocks
-                        //sorting is done in descending order of holding values
-                        string tempname = String.Copy(name[j]);
+                                              
+                        string nametemp = String.Copy(name[j]);
                         name[j] = String.Copy(name[j + 1]);
-                        name[j + 1] = String.Copy(tempname);
+                        name[j + 1] = String.Copy(nametemp);
 
-                        string tempsym = String.Copy(symbol[j]);
+                        string symboltemp = String.Copy(symbol[j]);
                         symbol[j] = String.Copy(symbol[j + 1]);
-                        symbol[j + 1] = String.Copy(tempsym);
+                        symbol[j + 1] = String.Copy(symboltemp);
 
-                        decimal tempholding = holdings[j];
+                        decimal holdingtemp = holdings[j];
                         holdings[j] = holdings[j + 1];
-                        holdings[j + 1] = tempholding;
+                        holdings[j + 1] = holdingtemp;
 
-                        decimal currprice = currentPrice[j];
+                        decimal currentprice = currentPrice[j];
                         currentPrice[j] = currentPrice[j + 1];
-                        currentPrice[j + 1] = currprice;
+                        currentPrice[j + 1] = currentprice;
                     }
                 }
             }
@@ -332,5 +337,4 @@ namespace Assignment_2
         }
 
     }
-}
 }
