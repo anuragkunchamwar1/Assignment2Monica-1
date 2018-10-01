@@ -231,35 +231,96 @@ namespace Assignment_2
         public void SortByValue()
         {
             // write your implementation here
-            StockNode currNodeOne = this.head;
+
             StockNode temp = this.head;
-            temp = temp.Next;
-            //this.head.StockHolding.Name = "Anything";
-            //this.Swap(temp.Next.StockHolding);
-
-
-
+            int StockLen = 0;
             while (temp.Next != null)
-            {
-                Console.WriteLine("Hello" + currNodeOne.StockHolding.Name);
 
-                Console.WriteLine("Hello" + temp.StockHolding.Name);
-                if (currNodeOne.StockHolding.Name.CompareTo(temp.StockHolding.Name) < 0)
-                { Console.WriteLine("code to return same"); }
-                else
-                { Console.WriteLine("Code to swap"); }
+            //Travering the list to find the total number of stocks as StockLen
+
+            {
+                StockLen++;
                 temp = temp.Next;
 
             }
 
+            //Creating local variables for run-time data
+            decimal[] holdings = new decimal[StockLen];
+            decimal[] currentPrice = new decimal[StockLen];
+            string[] symbol = new string[StockLen];
+            string[] name = new string[StockLen];
+
+            temp = this.head;
+            int ctr = 0;
+            while (temp.Next != null)
+
+            {
+                //Populating the incremental local variables
+
+                holdings[ctr] = temp.StockHolding.Holdings;
+                currentPrice[ctr] = temp.StockHolding.CurrentPrice;
+                symbol[ctr] = String.Copy(temp.StockHolding.Symbol);
+                name[ctr] = String.Copy(temp.StockHolding.Name);
+
+                temp = temp.Next;
+                ctr++;
+
+            }
+
+            //Creating comparision logic with nested loops using CompareTo
+            //Bubblesorting is used based on descending holding values of stocks
+
+            for (int i = 1; i < name.Length; i++)
+            {
+                for (int j = 0; j < name.Length - i; j++)
+                {
+                    if (holdings[j] < holdings[j + 1])
+
+                    {
+                        string nametemp = String.Copy(name[j]);
+                        name[j] = String.Copy(name[j + 1]);
+                        name[j + 1] = String.Copy(nametemp);
+
+                        string symboltemp = String.Copy(symbol[j]);
+                        symbol[j] = String.Copy(symbol[j + 1]);
+                        symbol[j + 1] = String.Copy(symboltemp);
+
+                        decimal holdingtemp = holdings[j];
+                        holdings[j] = holdings[j + 1];
+                        holdings[j + 1] = holdingtemp;
+
+                        decimal currentprice = currentPrice[j];
+                        currentPrice[j] = currentPrice[j + 1];
+                        currentPrice[j + 1] = currentprice;
+                    }
+
+                }
+
+            }
 
 
+            temp = this.head;
+            ctr = 0;
+            while (temp.Next != null)
+
+            {
+                //Updating the existing list with sorted array values
+
+                temp.StockHolding.Holdings = holdings[ctr];
+                temp.StockHolding.CurrentPrice = currentPrice[ctr];
+                temp.StockHolding.Name = String.Copy(name[ctr]);
+                temp.StockHolding.Symbol = String.Copy(symbol[ctr]);
+
+                temp = temp.Next;
+                ctr++;
+
+            }
         }
-        //param        : NA
-        //summary      : Sort the list alphabatically
-        //return       : NA
-        //return type  : NA
-        public void SortByName()
+            //param        : NA
+            //summary      : Sort the list alphabatically
+            //return       : NA
+            //return type  : NA
+            public void SortByName()
         {
             // write your implementation here
             StockNode temp = this.head;
