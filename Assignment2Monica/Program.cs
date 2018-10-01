@@ -320,7 +320,7 @@ namespace Assignment_2
             ctr = 0;
             while (temp.Next != null)
             {
-                //updating the existing list with sorted array values
+                //Updating the existing list with sorted array values
 
                 temp.StockHolding.Holdings = holdings[ctr];
                 temp.StockHolding.CurrentPrice = currentPrice[ctr];
