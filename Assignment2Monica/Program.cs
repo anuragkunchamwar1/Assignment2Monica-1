@@ -295,14 +295,13 @@ namespace Assignment_2
 
             }
 
+            //The existing list will be now updated with sorted array values
 
             temp = this.head;
             ctr = 0;
             while (temp.Next != null)
 
             {
-                //Updating the existing list with sorted array values
-
                 temp.StockHolding.Holdings = holdings[ctr];
                 temp.StockHolding.CurrentPrice = currentPrice[ctr];
                 temp.StockHolding.Name = String.Copy(name[ctr]);
@@ -351,7 +350,6 @@ namespace Assignment_2
             }
 
             //Creating comparision logic with nested loops using CompareTo
-            //Bubblesorting is used based on descending holding values of stocks
 
             for (int i = 1; i < name.Length; i++)
             {
@@ -379,11 +377,12 @@ namespace Assignment_2
                 }
             }
 
+            //The existing list will be now updated with sorted array values
+
             temp = this.head;
             ctr = 0;
             while (temp.Next != null)
-            {
-                //Updating the existing list with sorted array values
+            { 
 
                 temp.StockHolding.Holdings = holdings[ctr];
                 temp.StockHolding.CurrentPrice = currentPrice[ctr];
