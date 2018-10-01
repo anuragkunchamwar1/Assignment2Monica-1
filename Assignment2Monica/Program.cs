@@ -230,33 +230,32 @@ namespace Assignment_2
         //return type  : NA
         public void SortByValue()
         {
-            // write your implementation here
+            //Write your implementation here
+            //We created local variables and used the method of bubblesorting to sort the local in descending order
 
             StockNode temp = this.head;
             int StockLen = 0;
+            
+            //The below function traverses the list to find the total number of stocks, stored as StockLen
             while (temp.Next != null)
-
-            //Travering the list to find the total number of stocks as StockLen
 
             {
                 StockLen++;
                 temp = temp.Next;
-
             }
 
-            //Creating local variables for run-time data
             decimal[] holdings = new decimal[StockLen];
             decimal[] currentPrice = new decimal[StockLen];
             string[] symbol = new string[StockLen];
             string[] name = new string[StockLen];
+
+            //This fucntion stores the incremental local variables
 
             temp = this.head;
             int ctr = 0;
             while (temp.Next != null)
 
             {
-                //Populating the incremental local variables
-
                 holdings[ctr] = temp.StockHolding.Holdings;
                 currentPrice[ctr] = temp.StockHolding.CurrentPrice;
                 symbol[ctr] = String.Copy(temp.StockHolding.Symbol);
@@ -264,12 +263,10 @@ namespace Assignment_2
 
                 temp = temp.Next;
                 ctr++;
-
             }
 
-            //Creating comparision logic with nested loops using CompareTo
-            //Bubblesorting is used based on descending holding values of stocks
-
+            //Now we build comparision logic with nested loops
+            
             for (int i = 1; i < name.Length; i++)
             {
                 for (int j = 0; j < name.Length - i; j++)
